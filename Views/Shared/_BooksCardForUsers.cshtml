@@ -1,0 +1,88 @@
+﻿@model List<Book>
+
+<div class="container mt-5">
+    <form id="antiForgeryForm">
+        @Html.AntiForgeryToken()
+    </form>
+    <!-- hidden token for AJAX -->
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card shadow-lg border-0 h-100 text-center rounded-4 overflow-hidden book-card"
+                     style="background: linear-gradient(135deg, #192387, #0d6efd); color: #fff;">
+
+                    <!-- style="background: #120360;color: #fff;" Book Image -->
+                    <div class="position-relative">
+                        <img src="/images/@item.ImageUrl"
+                             class="card-img-top rounded-top"
+                             alt="@item.Title"
+                             style="height:220px; object-fit:cover;" />
+
+                        @if (item.Favor == true)
+                        {
+                            <span class="position-absolute top-0 end-0 badge bg-gradient px-3 py-2 m-2 shadow">
+                                ❤️ Favorited
+                            </span>
+                        }
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="card-body  text-light">
+                        <h5 class="card-title fw-bold">@item.Title</h5>
+                        <p class="mb-1"><i class="bi bi-person"></i> @item.Auther</p>
+                       
+                    </div>
+
+                    <!-- Card Footer (User actions only) -->
+                    <div class="card-footer bg-transparent border-0 d-flex justify-content-center gap-3">
+                        <a asp-action="Details" asp-controller="Books" asp-route-id="@item.Id"
+                           class="btn btn-sm btn-outline-light rounded-pill px-3">
+                            <i class="bi bi-info-circle"></i> Details
+                        </a>
+
+                        <button type="button"
+                                class="btn btn-sm @(item.Favor == true ? "btn-danger" : "btn-warning")
+                                               rounded-pill px-3 text-dark favorite-btn"
+                                data-id="@item.Id">
+                            <i class="bi bi-heart-fill"></i>
+                            @(item.Favor == true ? "Favorited" : "Favorite")
+                        </button>
+
+                    
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    /* 🔥 Card Animation */
+    .book-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .book-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+        }
+
+    /* Badge style */
+    .badge.bg-gradient {
+        background: linear-gradient(135deg, #ff7eb3, #ff758c);
+        font-size: 0.75rem;
+        border-radius: 12px;
+    }
+
+    /* Button Hover Effect */
+    .favorite-btn {
+        transition: all 0.25s ease-in-out;
+    }
+
+        .favorite-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        }
+</style>

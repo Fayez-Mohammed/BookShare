@@ -1,0 +1,56 @@
+﻿
+@model Book
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Book Image -->
+        <div class="col-md-4 text-center">
+            <img src="/images/@Model.ImageUrl" alt="@Model.Title"
+                 class="img-fluid rounded shadow-lg"
+                 style="max-height: 350px; object-fit: cover;" />
+        </div>
+
+        <!-- Book Details -->
+        <div class="col-md-8 text-white">
+            <h5 class="text-danger fw-bold">📖 Professional eBook</h5>
+
+            <h2 class="fw-bold">@Model.Title</h2>
+            <h5 class="text-secondary">@Model.Description</h5>
+
+            <p class="mt-2">by <span class="fw-bold text-danger">@Model.Auther</span></p>
+
+            <!-- Star Rating -->
+            <div class="mb-3">
+                @for (int i = 1; i <= 5; i++)
+                {
+                    if (i <= Model.Stars)
+                    {
+                        <i class="bi bi-star-fill text-danger fs-4"></i>
+                    }
+                    else
+                    {
+                        <i class="bi bi-star text-danger fs-4"></i>
+                    }
+                }
+                <span class="ms-2">( @Model.Stars Stars )</span>
+            </div>
+
+            <!-- Extra Info -->
+            <p><strong>Category:</strong> @ViewBag.CName</p>
+            <p><strong>Language:</strong> English</p>
+
+            <!-- Buttons -->
+            <div class="d-flex gap-3 mt-4">
+            <a href="/pdfs/@Model.PdfUrl" target="_blank"
+                     class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">
+                    📖 Read for Free
+                </a>
+
+                <a asp-action="Index" asp-controller="Books"
+                   class="btn btn-outline-light rounded-pill px-4">
+                    🔙 Back
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

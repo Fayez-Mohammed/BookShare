@@ -1,0 +1,286 @@
+﻿@model List<Category>
+
+<link rel="stylesheet" href="~/css/Home.css" />
+@{
+    ViewData["Title"] = "Home Page";
+}
+@if (User.IsInRole("Admin")) { 
+<div class="hero-section d-flex align-items-center text-center"
+     style="background: url('/images/black.jpg') no-repeat center center/cover; height: 100vh;">
+
+    <div class="container">
+        <h1 class="fw-bold display-4" style="color:#00c2ff; text-shadow: 2px 2px 10px rgba(0,0,0,0.6);">
+            Unlock Your Potential
+        </h1>
+                <h2 class="hero-subheading mt-4 fw-bold text-center px-3">
+    Gain access to <span class="highlight">expert insights</span> and 
+    <span class="highlight">practical strategies</span> designed to help you 
+    <span class="glow-blue">master skills faster</span>, 
+    overcome obstacles, and 
+    <span class="glow-gold">achieve lasting success</span>.
+</h2>
+
+
+    <style>
+        .hero-subheading {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: auto;
+                    background: linear-gradient(90deg, #17005e, #090048, #100068);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            animation: fadeInUp 1.2s ease-in-out both;
+        }
+
+        .highlight { font-weight: 900; }
+
+                .glow-blue {
+                    color: #fff;
+                    
+                }
+
+                .glow-gold {
+                    color: #fff;
+                   
+                }
+
+       @@keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+                    
+    </style>
+
+
+    </div>
+</div>
+
+<div class="text-center my-5">
+    <h2 class="fw-bold"
+        style="background: linear-gradient(90deg, #192387, #0d6efd);
+               -webkit-background-clip: text;
+               -webkit-text-fill-color: transparent;
+               text-shadow: 0 2px 6px rgba(0,0,0,0.3);">
+        Have a taste of what we offer!
+    </h2>
+
+    <h4 class="mt-3"
+        style="color: #e0e0e0;
+               max-width: 800px;
+               margin: auto;
+               line-height: 1.6;
+               text-shadow: 0 1px 3px rgba(0,0,0,0.4);">
+        Explore our top categories, packed with bite-sized learning content designed
+        to help you solve workplace challenges, advance your career, and drive real results
+        in your professional journey.
+    </h4>
+</div>
+
+<div class="container mt-5"> 
+
+    @await Html.PartialAsync("_CategoryCardsForAdmin", Model)
+            </div>
+<div class="d-flex justify-content-center my-5">
+    <a asp-action="Index" asp-controller="Categories"
+       class="btn btn-lg px-5 py-3 shadow-sm text-white fw-bold"
+       style="background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%); border-radius: 50px;">
+        <i class="bi bi-grid-3x3-gap-fill me-2"></i> All Categories
+    </a>
+</div>
+}
+@if (!User.IsInRole("Admin"))
+{
+    <div class="hero-section d-flex align-items-center text-center"
+         style="background: url('/images/black.jpg') no-repeat center center/cover; height: 100vh;">
+
+        <div class="container">
+            <h1 class="fw-bold display-4" style="color:#00c2ff; text-shadow: 2px 2px 10px rgba(0,0,0,0.6);">
+                Unlock Your Potential
+            </h1>
+           <h2 class="hero-subheading mt-4 fw-bold text-center px-3">
+    Gain access to <span class="highlight">expert insights</span> and 
+    <span class="highlight">practical strategies</span> designed to help you 
+    <span class="glow-blue">master skills faster</span>, 
+    overcome obstacles, and 
+    <span class="glow-gold">achieve lasting success</span>.
+</h2>
+
+
+    <style>
+        .hero-subheading {
+            font-size: 1.8rem;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: auto;
+                    background: linear-gradient(90deg, #17005e, #090048, #100068);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            animation: fadeInUp 1.2s ease-in-out both;
+        }
+
+        .highlight { font-weight: 900; }
+
+                .glow-blue {
+                    color: #fff;
+                    
+                }
+
+                .glow-gold {
+                    color: #fff;
+                   
+                }
+
+       @@keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+                    
+    </style>
+
+
+        </div>
+    </div>
+
+    <div class="text-center my-5">
+        <h2 class="fw-bold"
+            style="background: linear-gradient(90deg, #192387, #0d6efd);
+                   -webkit-background-clip: text;
+                   -webkit-text-fill-color: transparent;
+                   text-shadow: 0 2px 6px rgba(0,0,0,0.3);">
+            Have a taste of what we offer!
+        </h2>
+
+        <h4 class="mt-3"
+            style="color: #e0e0e0;
+                   max-width: 800px;
+                   margin: auto;
+                   line-height: 1.6;
+                   text-shadow: 0 1px 3px rgba(0,0,0,0.4);">
+            Explore our top categories, packed with bite-sized learning content designed
+            to help you solve workplace challenges, advance your career, and drive real results
+            in your professional journey.
+        </h4>
+    </div>
+
+    <div class="container mt-5">
+
+        @await Html.PartialAsync("_CategoryCardsForUsers", Model)
+    </div>
+    <div class="d-flex justify-content-center my-5">
+        <a asp-action="Index" asp-controller="Categories"
+           class="btn btn-lg px-5 py-3 shadow-sm text-white fw-bold"
+           style="background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%); border-radius: 50px;">
+            <i class="bi bi-grid-3x3-gap-fill me-2"></i> All Categories
+        </a>
+    </div>
+}
+
+<ul class="nav nav-tabs border-0 mb-3 justify-content-center">
+    @{
+        int tabIndex = 0;
+    }
+    @foreach (var item in (Dictionary<string,List<Book>>) ViewBag.BookDic)
+    {
+        <li class="nav-item">
+            <a class="nav-link text-white @(tabIndex == 0 ? "active fw-bold" : "")" data-bs-toggle="tab" href="#@item.Key.Replace(" ", "_")">@item.Key</a>
+        </li>
+        tabIndex++;
+    }
+
+    
+</ul>
+<div class="tab-content">
+    @{
+        int paneIndex = 0;
+    }
+    @foreach (var item in (Dictionary<string, List<Book>>)ViewBag.BookDic)
+    {
+        var paneId = item.Key.Replace(" ", "_");
+        <div class="tab-pane fade @(paneIndex == 0 ? "show active" : "")" id="@paneId">
+            <div id="@paneId-Carousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @{
+                        var books = item.Value;
+                        int groupSize = 3;
+                        for (int i = 0; i < books.Count; i += groupSize)
+                        {
+                            var group = books.Skip(i).Take(groupSize);
+                            <div class="carousel-item @(i == 0 ? "active" : "")">
+                                <div class="container" style="max-width: 1000px; margin:auto;">
+                                    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+                                        @foreach (var book in group)
+                                        {
+                                            <div class="col">
+                                                <a asp-action="Details" asp-controller="Books" asp-route-id="@book.Id" class="text-decoration-none">
+                                                    <div class="card border-0 shadow-lg h-100 rounded-4 overflow-hidden book-card">
+                                                        <!-- Book Image -->
+                                                        <div class="position-relative">
+                                                            <img src="/images/@book.ImageUrl"
+                                                                 class="card-img-top"
+                                                                 style="height:220px; object-fit:cover;" />
+                                                            <span class="position-absolute top-0 end-0 badge bg-gradient px-3 py-2 m-2 shadow">
+                                                                📚 Book
+                                                            </span>
+                                                        </div>
+
+                                                        <!-- Book Details -->
+                                                        <div class="card-body text-center bg-light">
+                                                            <h6 class="fw-bold text-dark">@book.Title</h6>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+
+                <!-- Carousel Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#@paneId-Carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#@paneId-Carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+        paneIndex++;
+    }
+</div>
+
+<!-- Extra CSS for beauty -->
+<style>
+    .book-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: linear-gradient(135deg, #192387, #0d6efd);
+        color: #fff;
+    }
+
+        .book-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .book-card .card-body {
+            background: #f8f9fa;
+            border-top: 2px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .book-card h6 {
+            font-size: 1rem;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+    .badge.bg-gradient {
+        background: linear-gradient(135deg, #ff7eb3, #ff758c);
+        font-size: 0.75rem;
+    }
+</style>

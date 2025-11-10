@@ -1,0 +1,38 @@
+﻿@model List<Book>
+
+@{
+    ViewData["Title"] = "My Favorites";
+}
+
+
+  
+
+  
+    @if (Model == null || !Model.Any())
+    {
+      
+   
+        <div class="text-center p-5  rounded-3 shadow-sm">
+            <i class="bi bi-emoji-frown display-1 text-muted"></i>
+            <h3 class="mt-3 text-danger">No Favorites Yet</h3>
+            <p class="text-info">Browse books and add some to your favorites!</p>
+            <a asp-controller="Books" asp-action="Index" class="btn btn-outline-danger mt-3 px-4 rounded-pill">
+                <i class="bi bi-arrow-left"></i> Back to Books
+            </a>
+        </div>
+    }
+    else
+    {
+         <div class="text-center mb-5">
+        <h1 class="fw-bold text-danger">
+            <i class="bi bi-heart-fill  text-danger"></i> My Favorite Books
+        </h1>
+        <p class="text-info fs-5">
+            Here are the books you’ve marked as your favorites ❤️
+        </p>
+    </div>
+
+                    @await Html.PartialAsync("_BooksCardForUsers", Model)
+            
+    }
+

@@ -1,0 +1,62 @@
+﻿@model Book_Sphere.ViewModel.RoleViewModel
+
+@{
+    ViewData["Title"] = "Add Role";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg border-0 rounded-4">
+                <!-- Card Header -->
+                <div class="card-header text-white text-center rounded-top-4"
+                     style="background: linear-gradient(135deg, #0d6efd, #004085);">
+                    <h3 class="mb-0">
+                        <i class="bi bi-shield-lock-fill me-2"></i> Add New Role
+                    </h3>
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body p-4">
+                    <form asp-action="AddRole">
+                        <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="RoleName" class="form-label fw-bold"></label>
+                            <input asp-for="RoleName" class="form-control rounded-pill shadow-sm" placeholder="Enter role name..." />
+                            <span asp-validation-for="RoleName" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-center gap-3">
+                            <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow">
+                                <i class="bi bi-plus-circle me-1"></i> Add Role
+                            </button>
+                            <a asp-action="Index" asp-controller="Home"  class="btn btn-secondary btn-lg rounded-pill shadow">
+                                <i class="bi bi-arrow-left-circle me-1"></i> Back
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Extra Links -->
+            <div class="text-center mt-3">
+                <a asp-action="RoleToExsitingUser" class="btn btn-outline-info rounded-pill">
+                    <i class="bi bi-person-check me-1"></i> Add Role to Existing User
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+
+
+

@@ -1,0 +1,67 @@
+﻿@model Book_Sphere.ViewModel.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100" style="background: linear-gradient(135deg, #11998e, #38ef7d);">
+    <div class="card shadow-lg border-0 rounded-4" style="width: 420px;">
+        <div class="card-body p-5">
+            <h2 class="text-center mb-4 fw-bold text-success">
+                <i class="bi bi-box-arrow-in-right"></i> Login
+            </h2>
+
+            <form asp-action="SaveLogin">
+                <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                <!-- Email -->
+                <div class="form-group mb-3">
+                    <label asp-for="Email" class="form-label fw-semibold"></label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-success text-white"><i class="bi bi-envelope"></i></span>
+                        <input asp-for="Email" class="form-control rounded-end" placeholder="Enter your email" />
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group mb-3">
+                    <label asp-for="Password" class="form-label fw-semibold"></label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-success text-white"><i class="bi bi-lock"></i></span>
+                        <input asp-for="Password" type="password" class="form-control rounded-end" placeholder="Enter your password" />
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <!-- Remember Me -->
+                <div class="form-check mb-4">
+                    <input class="form-check-input" asp-for="RememberMe" />
+                    <label class="form-check-label fw-semibold">
+                        @Html.DisplayNameFor(model => model.RememberMe)
+                    </label>
+                </div>
+
+                <!-- Submit -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success btn-lg rounded-pill shadow-sm">
+                        <i class="bi bi-box-arrow-in-right"></i> Login
+                    </button>
+                </div>
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="mb-1 text-muted">Don’t have an account?</p>
+                <a asp-action="Register" class="btn btn-outline-success rounded-pill px-4">
+                    <i class="bi bi-person-plus"></i> Register
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

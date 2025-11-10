@@ -1,0 +1,60 @@
+﻿@model List<Book>
+@* <div style="color:aliceblue">
+    <br />
+    <br />
+<button style="margin-left:60px;" class="category__content-header-back bg-dark" onclick="history.back()" >
+    <svg width="32" height="33" viewBox="0 0 32 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path class="category__back-button-background " d="M29 0H3C1.34315 0 0 1.34315 0 3V30C0 31.6569 1.34315 33 3 33H29C30.6569 33 32 31.6569 32 30V3C32 1.34315 30.6569 0 29 0Z"></path>
+        <path d="M20 9.1582L11.6885 16.6719L20.001 24.9849" stroke="#CCCCCC"></path>
+    </svg>
+       
+    </button> <r style="font-size:25px">@ViewBag.CatName</r>
+</div> *@
+<div class="d-flex gap-3 mt-4">
+  
+    <a asp-action="Index" asp-controller="Categories"
+       class="btn btn-outline-light rounded-pill px-4">
+        🔙 Back
+    </a><h2>@ViewBag.CatName</h2>
+</div>
+
+<br />
+<br />
+<br />
+@if (User.IsInRole("Admin"))
+{
+    <div class="container mt-5">
+        @{await Html.RenderPartialAsync("_BooksCardForAdmin", Model);}
+    </div>
+}
+@if (!User.IsInRole("Admin"))
+{
+    <div class="container mt-5">
+        @{await Html.RenderPartialAsync("_BooksCardForUsers", Model);}
+    </div>
+}
+@* <div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in ViewBag.BookList)
+    {
+        <div class="col">
+            <div class="card shadow-sm border-0 h-100 text-center">
+                <img src="@item.ImageUrl" class="card-img-top" alt="@item.Title"
+                     style="height:200px; object-fit:cover;" />
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">@item.Title</h5>
+                </div>
+                <div class="card-footer bg-white border-0 d-flex justify-content-center gap-3">
+                    <a asp-action="Details"asp-controller="Books" asp-route-id="@item.Id" class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-info-circle"></i>
+                    </a>
+                    <a asp-action="Edit" asp-controller="Books" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                    <a asp-action="Delete" asp-controller="Books" asp-route-id="@item.Id" class="btn btn-outline-danger btn-sm">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    } 
+</div> *@

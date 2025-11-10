@@ -1,0 +1,18 @@
+﻿/*for Home cat*/
+.nav-tabs .nav-link {
+    color: #bbb;
+    font-weight: 600;
+}
+
+    .nav-tabs .nav-link.active {
+        color: #e63946;
+        border-bottom: 3px solid #e63946;
+        background: transparent;
+    }
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+/*----------------------*/

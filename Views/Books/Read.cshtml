@@ -1,0 +1,12 @@
+﻿@model Book
+
+<div class="container mt-5">
+    <h2 class="fw-bold text-center mb-4">📖 @Model.Title</h2>
+
+    <div class="ratio ratio-16x9 shadow-lg border rounded">
+        <iframe src="/pdfs/@Model.PdfUrl"
+                style="width:100%; height:1000px; border:none;">
+        </iframe>
+
+    </div>
+</div>

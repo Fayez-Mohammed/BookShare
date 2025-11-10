@@ -1,0 +1,78 @@
+﻿@model Book_Sphere.ViewModel.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100" style="background: linear-gradient(135deg, #1d2671, #c33764);">
+    <div class="card shadow-lg border-0 rounded-4" style="width: 450px;">
+        <div class="card-body p-5">
+            <h2 class="text-center mb-4 fw-bold text-primary">
+                <i class="bi bi-person-plus-fill"></i> Create Account
+            </h2>
+            <form asp-action="SaveRegister">
+                <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                <!-- Full Name -->
+                <div class="form-group mb-3">
+                    <label asp-for="FullName" class="form-label fw-semibold"></label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-primary text-white"><i class="bi bi-person"></i></span>
+                        <input asp-for="FullName" class="form-control rounded-end" placeholder="Enter your full name" />
+                    </div>
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group mb-3">
+                    <label asp-for="Email" class="form-label fw-semibold"></label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-primary text-white"><i class="bi bi-envelope"></i></span>
+                        <input asp-for="Email" class="form-control rounded-end" placeholder="Enter your email" />
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group mb-3">
+                    <label asp-for="Password" class="form-label fw-semibold"></label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-primary text-white"><i class="bi bi-lock"></i></span>
+                        <input asp-for="Password" type="password" class="form-control rounded-end" placeholder="Enter your password" />
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group mb-4">
+                    <label asp-for="ConfirmPassword" class="form-label fw-semibold"></label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-primary text-white"><i class="bi bi-lock-fill"></i></span>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control rounded-end" placeholder="Confirm your password" />
+                    </div>
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <!-- Submit -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg rounded-pill shadow-sm">
+                        <i class="bi bi-person-check"></i> Register
+                    </button>
+                </div>
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="mb-1 text-muted">Already have an account?</p>
+                <a asp-action="Login" class="btn btn-outline-primary rounded-pill px-4">
+                    <i class="bi bi-box-arrow-in-right"></i> Login
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
